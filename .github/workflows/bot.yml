@@ -1,11 +1,14 @@
-
 name: McBot Check
 
 on:
-  workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   check:
@@ -13,15 +16,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-
+          cache: npm
       - name: Install dependencies
-        run: npm install
-
+        run: npm ci
       - name: Check JavaScript syntax
         run: node --check index.js
-        
+      - name: Validate settings JSON
+        run: node -e "JSON.parse(require('fs').readFileSync('settings.json', 'utf8')); console.log('settings.json is valid')"
