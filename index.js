@@ -14,7 +14,7 @@ const path = require("path");
 // Optional: paste your OpenAI API key between the quotes below.
 // WARNING: If you commit this file to GitHub, anyone with repository access may see the key.
 // Safer option: leave this empty and set OPENAI_API_KEY in Railway Variables.
-const OPENAI_API_KEY = "PASTE_OPENAI_API_KEY_HERE";
+const OPENAI_API_KEY = "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";
 
 // ============================================================
 // EXPRESS SERVER - Keep Render/Aternos alive
